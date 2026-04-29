@@ -26,6 +26,11 @@ figures:
     caption: Beruházások alakulása 2015-2025 között
 
   - type: datawrapper
+    id: nBcDb
+    height: 500
+    caption: GDP alakulása Magyarországon és a régióban
+
+  - type: datawrapper
     id: xCQYg
     height: 500
     caption: Háztartási fogyasztás alakulása
@@ -46,8 +51,13 @@ figures:
 
   - type: datawrapper
     id: vNB2q
-    height: 600
+    height: 500
     caption: Ipari termelés Magyarországon és Németországban
+
+  - type: datawrapper
+    id: O3HDA
+    height: 500
+    caption: Külföldi és hazai vállalatok termelékenysége
 
   - type: section
     title: "Munkaerőpiac"
