@@ -1,5 +1,5 @@
 title: "Ábrakészlet 2026"
-subtitle: "Magas szintű döntéshozóknak"
+subtitle: ""
 author: ""
 date: "2026"
 
@@ -21,13 +21,23 @@ figures:
     title: "Makrogazdaság"
 
   - type: datawrapper
-    id: "REPLACE_WITH_CHART_ID"
+    id: DDEsU
     height: 500
-    caption: "GDP-növekedés (csak szerkesztői megjegyzés, nem jelenik meg)"
+    caption: Beruházások alakulása 2015-2025 között
+
+  - type: datawrapper
+    id: xCQYg
+    height: 500
+    caption: Háztartási fogyasztás alakulása
+
+  - type: datawrapper
+    id: GQ2o7
+    height: 500
+    caption: Infláció háború előtt és után
 
   - type: image
-    src: "figures/example.png"
-    alt: "Példa ábra"
+    src: https://pcdn.hu/articles/images-o/k/a/m/kamat250509-harom-751103.jpg
+    alt: "Államadósság és kamatteher a GDP arányában"
 
   - type: section
     title: "Munkaerőpiac"

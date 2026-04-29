@@ -43,6 +43,17 @@
     .topbar button { font: inherit; color: #444; padding: 4px 10px; border: 1px solid var(--rule); border-radius: 4px; background: #fff; cursor: pointer; }
     .topbar button:hover { background: #f0f0f0; }
 
+    /* Mobile */
+    @media (max-width: 600px) {
+      main { padding: 24px 12px 64px; }
+      header.cover h1 { font-size: 1.5rem; }
+      header.cover .subtitle { font-size: 0.95rem; }
+      h2.section { font-size: 1.2rem; }
+      figure.figure { margin-bottom: 1.5em; }
+      figure.figure figcaption { font-size: 0.8rem; }
+      .topbar .inner { padding: 6px 12px; font-size: 0.8rem; }
+    }
+
     @media print {
       body { background: #fff; }
       main { max-width: none; padding: 0; }
@@ -97,7 +108,21 @@
 
   {% if has_datawrapper %}
   <script>
-    !function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.data["datawrapper-height"][t]){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}});}();
+    /* Datawrapper auto-resize */
+    window.addEventListener("message", function(event) {
+      if (typeof event.data === "object" && event.data["datawrapper-height"]) {
+        var heights = event.data["datawrapper-height"];
+        for (var chartId in heights) {
+          var iframe = document.getElementById("datawrapper-chart-" + chartId);
+          if (!iframe) {
+            document.querySelectorAll("iframe[id^='datawrapper-chart-" + chartId + "']")
+              .forEach(function(el) { el.style.height = heights[chartId] + "px"; });
+          } else {
+            iframe.style.height = heights[chartId] + "px";
+          }
+        }
+      }
+    });
   </script>
   {% endif %}
 </body>
