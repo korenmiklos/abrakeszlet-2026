@@ -55,12 +55,43 @@ figures:
     caption: Ipari termelés Magyarországon és Németországban
 
   - type: datawrapper
-    id: O3HDA
+    id: nBcDb
     height: 500
-    caption: Külföldi és hazai vállalatok termelékenysége
+    caption: Reál GDP alakulása
+
+  - type: datawrapper
+    id: qOFXv
+    height: 500
+    caption: Beruházási arány a GDP-ben, folyó áron
+
+  - type: datawrapper
+    id: 7yIfi
+    height: 500
+    caption: Beruházási arány bontás Mo-n
 
   - type: section
     title: "Munkaerőpiac"
+
+  - type: datawrapper
+    id: jmDGn
+    height: 500
+    caption: Foglalkoztatási arány, nők
+
+  - type: datawrapper
+    id: ysKAy
+    height: 500
+    caption: Foglalkoztatási arány, férfiak
+
+  - type: datawrapper
+    id: DBE9K
+    height: 600
+    caption: Foglalkoztatási arány változása
+
+  - type: datawrapper
+    id: O3HDA
+    height: 500
+    caption: Külföldi vs. magyar vállalatok termelékenysége
+
 
   # Teljes Datawrapper URL is megadható src-ként:
   # - type: datawrapper
