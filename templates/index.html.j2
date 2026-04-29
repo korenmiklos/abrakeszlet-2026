@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>{{ title }}</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" id="theme" />
+
+  <style>
+    :root { --fg: #1a1a1a; --muted: #666; }
+    .reveal { font-family: "Inter", "Helvetica Neue", Arial, sans-serif; color: var(--fg); }
+    .reveal h1, .reveal h2, .reveal h3 { text-transform: none; letter-spacing: 0; }
+    .reveal section.title-slide h1 { font-size: 2.2em; margin-bottom: 0.2em; }
+    .reveal section.title-slide .subtitle { color: var(--muted); font-size: 1.1em; }
+    .reveal section.title-slide .meta { color: var(--muted); font-size: 0.8em; margin-top: 2em; }
+    .reveal section.section-slide { background: #f4f4f2; }
+    .reveal section.section-slide h2 { font-size: 2em; }
+
+    .reveal figure { margin: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: stretch; }
+    .reveal figure .chart { flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0; }
+    .reveal figure .chart iframe { width: 100% !important; height: 100% !important; border: 0; }
+    .reveal figure .chart img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .reveal figure figcaption { font-size: 0.55em; color: var(--muted); text-align: left; padding-top: 0.4em; }
+
+    .topbar { position: fixed; top: 8px; right: 12px; z-index: 30; font: 13px/1 system-ui, sans-serif; }
+    .topbar a { color: #555; text-decoration: none; padding: 4px 8px; border: 1px solid #ddd; border-radius: 4px; background: #fff; }
+    .topbar a:hover { background: #f3f3f3; }
+    @media print { .topbar { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="topbar"><a href="print.html">Görgethető nézet ↦</a></div>
+
+  <div class="reveal">
+    <div class="slides">
+      <section class="title-slide">
+        <h1>{{ title }}</h1>
+        {% if subtitle %}<div class="subtitle">{{ subtitle }}</div>{% endif %}
+        <div class="meta">
+          {% if author %}{{ author }}{% endif %}
+          {% if author and date %} · {% endif %}
+          {% if date %}{{ date }}{% endif %}
+        </div>
+      </section>
+
+      {% for f in figures %}
+        {% if f.type == 'section' %}
+      <section class="section-slide"><h2>{{ f.title }}</h2></section>
+        {% elif f.type == 'datawrapper' %}
+      <section data-figure="{{ f.number }}">
+        <figure>
+          <div class="chart">
+            <iframe title="{{ f.label }}" aria-label="{{ f.label }}"
+                    id="datawrapper-chart-{{ f.chart_id }}-{{ f.number }}"
+                    src="{{ f.src }}" scrolling="no" frameborder="0"
+                    style="width:0; min-width:100% !important; border:none;"
+                    height="{{ f.height }}" data-external="1"></iframe>
+          </div>
+          <figcaption>{{ f.label }}</figcaption>
+        </figure>
+      </section>
+        {% elif f.type == 'image' %}
+      <section data-figure="{{ f.number }}">
+        <figure>
+          <div class="chart"><img src="{{ f.src }}" alt="{{ f.alt }}" /></div>
+          <figcaption>{{ f.label }}</figcaption>
+        </figure>
+      </section>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  {% if has_datawrapper %}
+  <script>
+    /* Datawrapper auto-resize: https://www.datawrapper.de/_/docs/embedding/responsive */
+    !function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.data["datawrapper-height"][t]){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}});}();
+  </script>
+  {% endif %}
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      controls: true,
+      progress: true,
+      center: true,
+      transition: 'slide',
+      width: 1280,
+      height: 800,
+      margin: 0.04,
+      pdfSeparateFragments: false,
+    });
+  </script>
+</body>
+</html>

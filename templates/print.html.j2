@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title }}</title>
+  <style>
+    :root { --fg: #1a1a1a; --muted: #666; --rule: #ddd; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+      color: var(--fg);
+      line-height: 1.5;
+      background: #fafafa;
+    }
+    main { max-width: 820px; margin: 0 auto; padding: 48px 24px 96px; background: #fff; }
+    header.cover { padding-bottom: 24px; border-bottom: 1px solid var(--rule); margin-bottom: 32px; }
+    header.cover h1 { font-size: 2rem; margin: 0 0 0.25em; }
+    header.cover .subtitle { color: var(--muted); font-size: 1.1rem; }
+    header.cover .meta { color: var(--muted); font-size: 0.9rem; margin-top: 1.2em; }
+
+    h2.section { font-size: 1.4rem; margin: 2.5em 0 1em; padding-bottom: 0.3em; border-bottom: 1px solid var(--rule); }
+
+    figure.figure {
+      margin: 0 0 2.5em;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    figure.figure .chart { width: 100%; }
+    figure.figure .chart iframe { width: 100% !important; border: 0; display: block; }
+    figure.figure .chart img { display: block; max-width: 100%; height: auto; }
+    figure.figure figcaption {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 0.5em;
+    }
+
+    .topbar { position: sticky; top: 0; z-index: 30; background: #fafafa; border-bottom: 1px solid var(--rule); }
+    .topbar .inner { max-width: 820px; margin: 0 auto; padding: 8px 24px; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #555; }
+    .topbar a { color: #444; text-decoration: none; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 4px; background: #fff; }
+    .topbar a:hover { background: #f0f0f0; }
+    .topbar button { font: inherit; color: #444; padding: 4px 10px; border: 1px solid var(--rule); border-radius: 4px; background: #fff; cursor: pointer; }
+    .topbar button:hover { background: #f0f0f0; }
+
+    @media print {
+      body { background: #fff; }
+      main { max-width: none; padding: 0; }
+      .topbar { display: none; }
+      header.cover { page-break-after: always; break-after: page; }
+      h2.section { page-break-before: always; break-before: page; }
+      figure.figure { page-break-after: always; break-after: page; }
+      figure.figure:last-of-type { page-break-after: auto; break-after: auto; }
+      @page { size: A4; margin: 18mm 16mm; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar"><div class="inner">
+    <a href="index.html">↤ Diabemutató</a>
+    <button onclick="window.print()">Nyomtatás / PDF</button>
+  </div></div>
+
+  <main>
+    <header class="cover">
+      <h1>{{ title }}</h1>
+      {% if subtitle %}<div class="subtitle">{{ subtitle }}</div>{% endif %}
+      <div class="meta">
+        {% if author %}{{ author }}{% endif %}
+        {% if author and date %} · {% endif %}
+        {% if date %}{{ date }}{% endif %}
+      </div>
+    </header>
+
+    {% for f in figures %}
+      {% if f.type == 'section' %}
+    <h2 class="section">{{ f.title }}</h2>
+      {% elif f.type == 'datawrapper' %}
+    <figure class="figure" id="{{ f.anchor }}">
+      <div class="chart">
+        <iframe title="{{ f.label }}" aria-label="{{ f.label }}"
+                id="datawrapper-chart-{{ f.chart_id }}-{{ f.number }}"
+                src="{{ f.src }}" scrolling="no" frameborder="0"
+                style="width:0; min-width:100% !important; border:none;"
+                height="{{ f.height }}" data-external="1"></iframe>
+      </div>
+      <figcaption>{{ f.label }}</figcaption>
+    </figure>
+      {% elif f.type == 'image' %}
+    <figure class="figure" id="{{ f.anchor }}">
+      <div class="chart"><img src="{{ f.src }}" alt="{{ f.alt }}" /></div>
+      <figcaption>{{ f.label }}</figcaption>
+    </figure>
+      {% endif %}
+    {% endfor %}
+  </main>
+
+  {% if has_datawrapper %}
+  <script>
+    !function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.data["datawrapper-height"][t]){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}});}();
+  </script>
+  {% endif %}
+</body>
+</html>
