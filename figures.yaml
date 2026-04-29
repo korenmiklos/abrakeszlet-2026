@@ -35,9 +35,19 @@ figures:
     height: 500
     caption: Infláció háború előtt és után
 
+  - type: datawrapper
+    id: ayvvt
+    height: 500
+    caption: Államkötvényhozamok alakulása
+
   - type: image
     src: https://pcdn.hu/articles/images-o/k/a/m/kamat250509-harom-751103.jpg
     alt: "Államadósság és kamatteher a GDP arányában"
+
+  - type: datawrapper
+    id: vNB2q
+    height: 600
+    caption: Ipari termelés Magyarországon és Németországban
 
   - type: section
     title: "Munkaerőpiac"
