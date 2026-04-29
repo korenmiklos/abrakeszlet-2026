@@ -1,0 +1,38 @@
+title: "Ábrakészlet 2026"
+subtitle: "Magas szintű döntéshozóknak"
+author: ""
+date: "2026"
+
+# Minden bejegyzés egy ábra vagy egy szakaszcím.
+# A type lehet:
+#   - datawrapper  (id vagy src kötelező)
+#   - image        (src kötelező; lehet helyi PNG vagy URL)
+#   - section      (címlap a fejezetek elválasztásához; nem kap számot)
+#
+# Az "1. ábra" stb. számozást a build.py automatikusan generálja
+# az itt megadott sorrend alapján. A datawrapper embedek címe a chartban van,
+# ezért ide ne tegyél címet.
+#
+# Tipp: a Datawrapper "Embed" panelén az "Embed code" mutatja az iframe src-t,
+# de elég csak a chart ID-t megadni (pl. AbCdE).
+
+figures:
+  - type: section
+    title: "Makrogazdaság"
+
+  - type: datawrapper
+    id: "REPLACE_WITH_CHART_ID"
+    height: 500
+    caption: "GDP-növekedés (csak szerkesztői megjegyzés, nem jelenik meg)"
+
+  - type: image
+    src: "figures/example.png"
+    alt: "Példa ábra"
+
+  - type: section
+    title: "Munkaerőpiac"
+
+  # Teljes Datawrapper URL is megadható src-ként:
+  # - type: datawrapper
+  #   src: "https://datawrapper.dwcdn.net/AbCdE/1/"
+  #   height: 600
