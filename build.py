@@ -53,6 +53,8 @@ def normalize(items: list[dict]) -> list[dict]:
             "anchor": f"abra-{counter}",
         }
 
+        entry["caption"] = raw.get("caption", "")
+
         if kind == "datawrapper":
             src, chart_id = _dw_src_and_id(raw)
             entry["src"] = src

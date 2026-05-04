@@ -23,7 +23,8 @@
     .reveal figure .chart { flex: 1; min-height: 0; }
     .reveal figure .chart iframe { width: 100% !important; border: 0; }
     .reveal figure .chart img { max-width: 100%; max-height: 70vh; object-fit: contain; display: block; margin: 0 auto; }
-    .reveal figure figcaption { font-size: 0.55em; color: var(--muted); text-align: left; padding-top: 0.4em; }
+    .reveal figure .figure-title { font-size: 0.7em; font-weight: 600; text-align: center; margin: 0 0 0.3em; }
+    .reveal figure .figure-title .figure-number { color: var(--muted); }
 
     .topbar { position: fixed; top: 8px; right: 12px; z-index: 30; font: 13px/1 system-ui, sans-serif; }
     .topbar a { color: #555; text-decoration: none; padding: 4px 8px; border: 1px solid #ddd; border-radius: 4px; background: #fff; }
@@ -52,6 +53,7 @@
         {% elif f.type == 'datawrapper' %}
       <section data-figure="{{ f.number }}">
         <figure>
+          <h3 class="figure-title"><span class="figure-number">{{ f.label }}</span>{% if f.caption %} – {{ f.caption }}{% endif %}</h3>
           <div class="chart">
             <iframe title="{{ f.label }}" aria-label="{{ f.label }}"
                     id="datawrapper-chart-{{ f.chart_id }}-{{ f.number }}"
@@ -59,14 +61,13 @@
                     style="width:0; min-width:100% !important; border:none;"
                     height="{{ f.height }}" data-external="1"></iframe>
           </div>
-          <figcaption>{{ f.label }}</figcaption>
         </figure>
       </section>
         {% elif f.type == 'image' %}
       <section data-figure="{{ f.number }}">
         <figure>
+          <h3 class="figure-title"><span class="figure-number">{{ f.label }}</span>{% if f.caption %} – {{ f.caption }}{% endif %}</h3>
           <div class="chart"><img src="{{ f.src }}" alt="{{ f.alt }}" /></div>
-          <figcaption>{{ f.label }}</figcaption>
         </figure>
       </section>
         {% endif %}

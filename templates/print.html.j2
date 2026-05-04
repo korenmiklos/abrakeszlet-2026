@@ -30,11 +30,13 @@
     figure.figure .chart { width: 100%; }
     figure.figure .chart iframe { width: 100% !important; border: 0; display: block; }
     figure.figure .chart img { display: block; max-width: 100%; height: auto; }
-    figure.figure figcaption {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-top: 0.5em;
+    figure.figure .figure-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-align: center;
+      margin: 0 0 0.5em;
     }
+    figure.figure .figure-title .figure-number { color: var(--muted); }
 
     .topbar { position: sticky; top: 0; z-index: 30; background: #fafafa; border-bottom: 1px solid var(--rule); }
     .topbar .inner { max-width: 820px; margin: 0 auto; padding: 8px 24px; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #555; }
@@ -88,6 +90,7 @@
     <h2 class="section">{{ f.title }}</h2>
       {% elif f.type == 'datawrapper' %}
     <figure class="figure" id="{{ f.anchor }}">
+      <h3 class="figure-title"><span class="figure-number">{{ f.label }}</span>{% if f.caption %} – {{ f.caption }}{% endif %}</h3>
       <div class="chart">
         <iframe title="{{ f.label }}" aria-label="{{ f.label }}"
                 id="datawrapper-chart-{{ f.chart_id }}-{{ f.number }}"
@@ -95,12 +98,11 @@
                 style="width:0; min-width:100% !important; border:none;"
                 height="{{ f.height }}" data-external="1"></iframe>
       </div>
-      <figcaption>{{ f.label }}</figcaption>
     </figure>
       {% elif f.type == 'image' %}
     <figure class="figure" id="{{ f.anchor }}">
+      <h3 class="figure-title"><span class="figure-number">{{ f.label }}</span>{% if f.caption %} – {{ f.caption }}{% endif %}</h3>
       <div class="chart"><img src="{{ f.src }}" alt="{{ f.alt }}" /></div>
-      <figcaption>{{ f.label }}</figcaption>
     </figure>
       {% endif %}
     {% endfor %}
