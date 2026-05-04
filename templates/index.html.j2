@@ -19,6 +19,14 @@
     .reveal section.section-slide { background: #f4f4f2; }
     .reveal section.section-slide h2 { font-size: 2em; }
 
+    .reveal section.toc-slide { text-align: left; }
+    .reveal section.toc-slide h2 { font-size: 1.6em; margin-bottom: 0.6em; }
+    .reveal .toc-section { font-weight: 600; font-size: 0.7em; margin: 0.6em 0 0.2em; color: var(--fg); }
+    .reveal .toc-list { list-style: none; margin: 0; padding: 0; }
+    .reveal .toc-list li { font-size: 0.55em; line-height: 1.8; }
+    .reveal .toc-list li a { color: var(--muted); text-decoration: none; }
+    .reveal .toc-list li a:hover { color: var(--fg); }
+
     .reveal figure { margin: 0 auto; max-width: 900px; width: 100%; display: flex; flex-direction: column; align-items: stretch; }
     .reveal figure .chart { flex: 1; min-height: 0; }
     .reveal figure .chart iframe { width: 100% !important; border: 0; }
@@ -45,6 +53,20 @@
           {% if author and date %} · {% endif %}
           {% if date %}{{ date }}{% endif %}
         </div>
+      </section>
+
+      <section class="toc-slide">
+        <h2>Tartalom</h2>
+        {% for f in figures %}
+          {% if f.type == 'section' %}
+            {% if not loop.first %}</ul>{% endif %}
+        <div class="toc-section">{{ f.title }}</div>
+        <ul class="toc-list">
+          {% else %}
+          <li><a href="#/{{ loop.index }}">{{ f.label }}{% if f.caption %} – {{ f.caption }}{% endif %}</a></li>
+          {% endif %}
+        {% endfor %}
+        </ul>
       </section>
 
       {% for f in figures %}

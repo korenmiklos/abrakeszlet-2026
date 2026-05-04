@@ -22,6 +22,14 @@
 
     h2.section { font-size: 1.4rem; margin: 2.5em 0 1em; padding-bottom: 0.3em; border-bottom: 1px solid var(--rule); }
 
+    .toc { margin-bottom: 2.5em; }
+    .toc h2 { font-size: 1.4rem; margin: 0 0 0.8em; padding-bottom: 0.3em; border-bottom: 1px solid var(--rule); }
+    .toc-section { font-weight: 600; font-size: 1rem; margin: 1em 0 0.3em; }
+    .toc-list { list-style: none; margin: 0; padding: 0; }
+    .toc-list li { font-size: 0.9rem; line-height: 1.8; }
+    .toc-list li a { color: var(--muted); text-decoration: none; }
+    .toc-list li a:hover { color: var(--fg); }
+
     figure.figure {
       margin: 0 0 2.5em;
       page-break-inside: avoid;
@@ -84,6 +92,20 @@
         {% if date %}{{ date }}{% endif %}
       </div>
     </header>
+
+    <nav class="toc">
+      <h2>Tartalom</h2>
+      {% for f in figures %}
+        {% if f.type == 'section' %}
+          {% if not loop.first %}</ul>{% endif %}
+      <div class="toc-section">{{ f.title }}</div>
+      <ul class="toc-list">
+        {% else %}
+        <li><a href="#{{ f.anchor }}">{{ f.label }}{% if f.caption %} – {{ f.caption }}{% endif %}</a></li>
+        {% endif %}
+      {% endfor %}
+      </ul>
+    </nav>
 
     {% for f in figures %}
       {% if f.type == 'section' %}
