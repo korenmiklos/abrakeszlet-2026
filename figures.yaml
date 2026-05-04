@@ -72,10 +72,11 @@ figures:
     height: 500
     caption: Egy főre jutó fogyasztás alakulása
 
-  - type: datawrapper
+  - type: image
     id: FIXME
     height: 500
-    caption: Hatályos törvények és rendeletek száma (Európai Bizottság)
+    src: FIXME
+    caption: Hatályos törvények és rendeletek száma
 
   - type: section
     title: "Infláció és finanszírozás"
@@ -96,14 +97,14 @@ figures:
     caption: Adósságráta és kamatköltség
 
   - type: datawrapper
-    id: FIXME
+    id: NNn14
     height: 500
-    caption: Árfolyam alakulása
+    caption: Devizaárfolyam alakulása
 
   - type: datawrapper
-    id: FIXME
+    id: 7XfKh
     height: 500
-    caption: Államháztartás elsődleges egyenlege
+    caption: A kormányzati szektor egyenlege
 
   - type: section
     title: "Külpiacok"
