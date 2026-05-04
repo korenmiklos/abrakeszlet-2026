@@ -58,7 +58,6 @@ def normalize(items: list[dict]) -> list[dict]:
             "type": kind,
             "number": counter,
             "label": f"{counter}. ábra",
-            "anchor": f"abra-{counter}",
         }
 
         entry["caption"] = raw.get("caption", "")
@@ -68,12 +67,14 @@ def normalize(items: list[dict]) -> list[dict]:
             entry["src"] = src
             entry["chart_id"] = chart_id
             entry["height"] = int(raw.get("height", 500))
+            entry["anchor"] = chart_id
         elif kind == "image":
             src = raw.get("src")
             if not src:
                 raise ValueError(f"image figure needs `src`: {raw!r}")
             entry["src"] = src
             entry["alt"] = raw.get("alt", "")
+            entry["anchor"] = _slugify(entry["caption"]) if entry["caption"] else f"abra-{counter}"
         else:
             raise ValueError(f"unknown figure type: {kind!r} in {raw!r}")
 
