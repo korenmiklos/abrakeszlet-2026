@@ -10,90 +10,110 @@ date: "2026"
 #   - section      (címlap a fejezetek elválasztásához; nem kap számot)
 #
 # Az "1. ábra" stb. számozást a build.py automatikusan generálja
-# az itt megadott sorrend alapján. A datawrapper embedek címe a chartban van,
-# ezért ide ne tegyél címet.
+# az itt megadott sorrend alapján.
 #
 # Tipp: a Datawrapper "Embed" panelén az "Embed code" mutatja az iframe src-t,
 # de elég csak a chart ID-t megadni (pl. AbCdE).
 
 figures:
   - type: section
-    title: "Makrogazdaság"
+    title: "Konjunktúra"
 
   - type: datawrapper
-    id: DDEsU
+    id: iRT8b
     height: 500
-    caption: Beruházások alakulása 2015-2025 között
+    caption: Negyedéves GDP alakulása
 
   - type: datawrapper
-    id: nBcDb
+    id: zJBgk
     height: 500
-    caption: GDP alakulása Magyarországon és a régióban
+    caption: Havi infláció
 
   - type: datawrapper
-    id: xCQYg
+    id: fSYFQ
     height: 500
-    caption: Háztartási fogyasztás alakulása
-
-  - type: datawrapper
-    id: GQ2o7
-    height: 500
-    caption: Infláció háború előtt és után
-
-  - type: datawrapper
-    id: ayvvt
-    height: 500
-    caption: Államkötvényhozamok alakulása
-
-  - type: image
-    src: https://pcdn.hu/articles/images-o/k/a/m/kamat250509-harom-751103.jpg
-    alt: "Államadósság és kamatteher a GDP arányában"
+    caption: Havi munkanélküliség
 
   - type: datawrapper
     id: vNB2q
     height: 500
-    caption: Ipari termelés Magyarországon és Németországban
+    caption: Ipari termelés Magyarországon, Németországban és a régióban
+
+  - type: section
+    title: "Hosszútávú növekedés"
+
+  - type: datawrapper
+    id: DDEsU
+    height: 500
+    caption: Beruházások alakulása
 
   - type: datawrapper
     id: nBcDb
     height: 500
-    caption: Reál GDP alakulása
-
-  - type: datawrapper
-    id: qOFXv
-    height: 500
-    caption: Beruházási arány a GDP-ben, folyó áron
-
-  - type: datawrapper
-    id: 7yIfi
-    height: 500
-    caption: Beruházási arány bontás Mo-n
-
-  - type: section
-    title: "Munkaerőpiac"
-
-  - type: datawrapper
-    id: jmDGn
-    height: 500
-    caption: Foglalkoztatási arány, nők
-
-  - type: datawrapper
-    id: ysKAy
-    height: 500
-    caption: Foglalkoztatási arány, férfiak
-
-  - type: datawrapper
-    id: DBE9K
-    height: 600
-    caption: Foglalkoztatási arány változása
+    caption: GDP volumenindex
 
   - type: datawrapper
     id: O3HDA
     height: 500
-    caption: Külföldi vs. magyar vállalatok termelékenysége
+    caption: Munkatermelékenység – külföldi és magyar vállalatok
 
+  - type: datawrapper
+    id: lNQ2y
+    height: 500
+    caption: Foglalkoztatottak száma
 
-  # Teljes Datawrapper URL is megadható src-ként:
-  # - type: datawrapper
-  #   src: "https://datawrapper.dwcdn.net/AbCdE/1/"
-  #   height: 600
+  - type: datawrapper
+    id: DBE9K
+    height: 600
+    caption: Foglalkoztatási ráta változása
+
+  - type: datawrapper
+    id: xCQYg
+    height: 500
+    caption: Egy főre jutó fogyasztás alakulása
+
+  - type: datawrapper
+    id: FIXME
+    height: 500
+    caption: Hatályos törvények és rendeletek száma (Európai Bizottság)
+
+  - type: section
+    title: "Infláció és finanszírozás"
+
+  - type: datawrapper
+    id: GQ2o7
+    height: 500
+    caption: Infláció alakulása
+
+  - type: datawrapper
+    id: ayvvt
+    height: 500
+    caption: Tízéves államkötvények átlagos hozama
+
+  - type: image
+    src: https://pcdn.hu/articles/images-o/k/a/m/kamat250509-harom-751103.jpg
+    alt: "Államadósság és kamatteher a GDP arányában"
+    caption: Adósságráta és kamatköltség
+
+  - type: datawrapper
+    id: FIXME
+    height: 500
+    caption: Árfolyam alakulása
+
+  - type: datawrapper
+    id: FIXME
+    height: 500
+    caption: Államháztartás elsődleges egyenlege
+
+  - type: section
+    title: "Külpiacok"
+
+  - type: datawrapper
+    id: FIXME
+    height: 500
+    caption: Export és import alakulása
+
+  - type: datawrapper
+    id: FIXME
+    height: 500
+    caption: FDI régiók szerint, a GDP százalékában

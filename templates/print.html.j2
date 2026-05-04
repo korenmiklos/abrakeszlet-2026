@@ -20,11 +20,19 @@
     header.cover .subtitle { color: var(--muted); font-size: 1.1rem; }
     header.cover .meta { color: var(--muted); font-size: 0.9rem; margin-top: 1.2em; }
 
-    h2.section { font-size: 1.4rem; margin: 2.5em 0 1em; padding-bottom: 0.3em; border-bottom: 1px solid var(--rule); }
+    h2.section { font-size: 1.4rem; margin: 2.5em 0 1em; padding-bottom: 0.3em; border-bottom: 1px solid var(--rule); position: relative; }
+
+    .anchor-link { opacity: 0; text-decoration: none; font-size: 0.75em; margin-left: 0.3em; cursor: pointer; transition: opacity 0.15s; }
+    .anchor-link::before { content: "\1F517"; }
+    h2.section:hover .anchor-link,
+    .figure-title:hover .anchor-link { opacity: 0.6; }
+    .anchor-link:hover { opacity: 1 !important; }
 
     .toc { margin-bottom: 2.5em; }
     .toc h2 { font-size: 1.4rem; margin: 0 0 0.8em; padding-bottom: 0.3em; border-bottom: 1px solid var(--rule); }
     .toc-section { font-weight: 600; font-size: 1rem; margin: 1em 0 0.3em; }
+    .toc-section a { color: var(--fg); text-decoration: none; }
+    .toc-section a:hover { color: var(--muted); }
     .toc-list { list-style: none; margin: 0; padding: 0; }
     .toc-list li { font-size: 0.9rem; line-height: 1.8; }
     .toc-list li a { color: var(--muted); text-decoration: none; }
@@ -67,7 +75,7 @@
     @media print {
       body { background: #fff; }
       main { max-width: none; padding: 0; }
-      .topbar { display: none; }
+      .topbar, .anchor-link { display: none; }
       header.cover { page-break-after: always; break-after: page; }
       h2.section { page-break-before: always; break-before: page; }
       figure.figure { page-break-after: always; break-after: page; }
@@ -98,7 +106,7 @@
       {% for f in figures %}
         {% if f.type == 'section' %}
           {% if not loop.first %}</ul>{% endif %}
-      <div class="toc-section">{{ f.title }}</div>
+      <div class="toc-section"><a href="#{{ f.anchor }}">{{ f.title }}</a></div>
       <ul class="toc-list">
         {% else %}
         <li><a href="#{{ f.anchor }}">{{ f.label }}{% if f.caption %} – {{ f.caption }}{% endif %}</a></li>
@@ -109,10 +117,10 @@
 
     {% for f in figures %}
       {% if f.type == 'section' %}
-    <h2 class="section">{{ f.title }}</h2>
+    <h2 class="section" id="{{ f.anchor }}">{{ f.title }}<a class="anchor-link" href="#{{ f.anchor }}"></a></h2>
       {% elif f.type == 'datawrapper' %}
     <figure class="figure" id="{{ f.anchor }}">
-      <h3 class="figure-title"><span class="figure-number">{{ f.label }}</span>{% if f.caption %} – {{ f.caption }}{% endif %}</h3>
+      <h3 class="figure-title"><span class="figure-number">{{ f.label }}</span>{% if f.caption %} – {{ f.caption }}{% endif %}<a class="anchor-link" href="#{{ f.anchor }}"></a></h3>
       <div class="chart">
         <iframe title="{{ f.label }}" aria-label="{{ f.label }}"
                 id="datawrapper-chart-{{ f.chart_id }}-{{ f.number }}"
@@ -123,7 +131,7 @@
     </figure>
       {% elif f.type == 'image' %}
     <figure class="figure" id="{{ f.anchor }}">
-      <h3 class="figure-title"><span class="figure-number">{{ f.label }}</span>{% if f.caption %} – {{ f.caption }}{% endif %}</h3>
+      <h3 class="figure-title"><span class="figure-number">{{ f.label }}</span>{% if f.caption %} – {{ f.caption }}{% endif %}<a class="anchor-link" href="#{{ f.anchor }}"></a></h3>
       <div class="chart"><img src="{{ f.src }}" alt="{{ f.alt }}" /></div>
     </figure>
       {% endif %}

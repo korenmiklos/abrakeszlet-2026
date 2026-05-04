@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 import yaml
@@ -36,13 +37,20 @@ def _dw_src_and_id(item: dict) -> tuple[str, str]:
     return src, chart_id or "chart"
 
 
+def _slugify(text: str) -> str:
+    text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode()
+    text = re.sub(r"[^\w\s-]", "", text.lower())
+    return re.sub(r"[-\s]+", "-", text).strip("-")
+
+
 def normalize(items: list[dict]) -> list[dict]:
     out: list[dict] = []
     counter = 0
     for raw in items or []:
         kind = raw.get("type")
         if kind == "section":
-            out.append({"type": "section", "title": raw.get("title", "")})
+            title = raw.get("title", "")
+            out.append({"type": "section", "title": title, "anchor": _slugify(title)})
             continue
 
         counter += 1

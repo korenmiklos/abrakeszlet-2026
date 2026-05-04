@@ -21,7 +21,9 @@
 
     .reveal section.toc-slide { text-align: left; }
     .reveal section.toc-slide h2 { font-size: 1.6em; margin-bottom: 0.6em; }
-    .reveal .toc-section { font-weight: 600; font-size: 0.7em; margin: 0.6em 0 0.2em; color: var(--fg); }
+    .reveal .toc-section { font-weight: 600; font-size: 0.7em; margin: 0.6em 0 0.2em; }
+    .reveal .toc-section a { color: var(--fg); text-decoration: none; }
+    .reveal .toc-section a:hover { color: var(--muted); }
     .reveal .toc-list { list-style: none; margin: 0; padding: 0; }
     .reveal .toc-list li { font-size: 0.55em; line-height: 1.8; }
     .reveal .toc-list li a { color: var(--muted); text-decoration: none; }
@@ -60,10 +62,10 @@
         {% for f in figures %}
           {% if f.type == 'section' %}
             {% if not loop.first %}</ul>{% endif %}
-        <div class="toc-section">{{ f.title }}</div>
+        <div class="toc-section"><a href="#/{{ f.anchor }}">{{ f.title }}</a></div>
         <ul class="toc-list">
           {% else %}
-          <li><a href="#/{{ loop.index }}">{{ f.label }}{% if f.caption %} – {{ f.caption }}{% endif %}</a></li>
+          <li><a href="#/{{ f.anchor }}">{{ f.label }}{% if f.caption %} – {{ f.caption }}{% endif %}</a></li>
           {% endif %}
         {% endfor %}
         </ul>
@@ -71,9 +73,9 @@
 
       {% for f in figures %}
         {% if f.type == 'section' %}
-      <section class="section-slide"><h2>{{ f.title }}</h2></section>
+      <section class="section-slide" id="{{ f.anchor }}"><h2>{{ f.title }}</h2></section>
         {% elif f.type == 'datawrapper' %}
-      <section data-figure="{{ f.number }}">
+      <section data-figure="{{ f.number }}" id="{{ f.anchor }}">
         <figure>
           <h3 class="figure-title"><span class="figure-number">{{ f.label }}</span>{% if f.caption %} – {{ f.caption }}{% endif %}</h3>
           <div class="chart">
@@ -86,7 +88,7 @@
         </figure>
       </section>
         {% elif f.type == 'image' %}
-      <section data-figure="{{ f.number }}">
+      <section data-figure="{{ f.number }}" id="{{ f.anchor }}">
         <figure>
           <h3 class="figure-title"><span class="figure-number">{{ f.label }}</span>{% if f.caption %} – {{ f.caption }}{% endif %}</h3>
           <div class="chart"><img src="{{ f.src }}" alt="{{ f.alt }}" /></div>
