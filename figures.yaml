@@ -78,6 +78,11 @@ figures:
     src: FIXME
     caption: Hatályos törvények és rendeletek száma
 
+  - type: datawrapper
+    id: tzdYO
+    height: 500
+    caption: Közvetlen vállalati támogatások alakulása
+
   - type: section
     title: "Infláció és finanszírozás"
 
